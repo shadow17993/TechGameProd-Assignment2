@@ -17,16 +17,27 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 
+	void Update(float delta);
+	void startButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
+	void startGame();
+	void endGame();
+
+	virtual bool onTouchBegin(cocos2d::Touch*, cocos2d::Event*);
+	virtual void onTouchMoved(cocos2d::Touch*, cocos2d::Event*);
+
+	bool Collision(Sprite* ball, Platform* platform);
+
 private:
 	Sprite* ball;
-
 	/*Sprite platform1;
 	Sprite platform2;
 	Sprite platform3;*/
-
 	Label* scoreLabel;
-
 	Sprite* background;
+	ui::Button* startButton;
+	Vec2 touchPos;
+
+	bool isGameLive;
 
 };
 

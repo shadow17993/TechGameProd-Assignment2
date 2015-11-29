@@ -2,6 +2,7 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
+#include <ui/UIButton.h>
 
 using namespace cocos2d;
 
@@ -17,7 +18,7 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 
-	void Update(float delta);
+	void update(float delta);
 	void startButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 	void startGame();
 	void endGame();
@@ -25,7 +26,7 @@ public:
 	virtual bool onTouchBegin(cocos2d::Touch*, cocos2d::Event*);
 	virtual void onTouchMoved(cocos2d::Touch*, cocos2d::Event*);
 
-	bool Collision(Sprite* ball, Platform* platform);
+	bool Collision(Sprite* ball, Sprite* platform);
 
 private:
 	Sprite* ball;

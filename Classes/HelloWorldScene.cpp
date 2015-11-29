@@ -36,12 +36,14 @@ bool HelloWorld::init()
 
     addChild(rootNode);
 
+	
+
+	this->scheduleUpdate();
+
 	ball = (Sprite*)rootNode->getChildByName("ball");
 	// Place Platforms here //
 	background = (Sprite*)rootNode->getChildByName("background");
 	scoreLabel = (Label*)rootNode->getChildByName("scoreLabel");
-
-	isGameLive = false;
 
 	auto touchListener = EventListenerTouchOneByOne::create();
 
@@ -56,17 +58,23 @@ bool HelloWorld::init()
 	startButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::startButtonPressed, this));
 	startButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.5f));
 
+	isGameLive = false;
+
     return true;
 }
 
-void HelloWorld::Update(float delta)
+void HelloWorld::update(float delta)
 {
 	auto winSize = Director::getInstance()->getVisibleSize();
 
-	if (isGameLive = true)
+	if (isGameLive)
 	{
 		// Update stuff goes here
-		
+		Vec2 v = touchPos - ball->getPosition();
+		float l = v.length();
+		v.x = v.x / l;
+		v.y = v.y / l;
+		ball->setPosition(ball->getPosition() - v * 3);
 	}
 }
 
@@ -80,6 +88,7 @@ void HelloWorld::startButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEvent
 
 void HelloWorld::startGame()
 {
+	auto winSize = Director::getInstance()->getVisibleSize();
 	isGameLive = true;
 
 	auto moveTo = MoveTo::create(0.5, Vec2(-winSize.width*0.5f, winSize.height*0.5f)); // Take half a second to move off screen.
@@ -88,6 +97,7 @@ void HelloWorld::startGame()
 
 void HelloWorld::endGame()
 {
+	auto winSize = Director::getInstance()->getVisibleSize();
 	isGameLive = false;
 
 	//Bring start button back on screen.
@@ -95,19 +105,20 @@ void HelloWorld::endGame()
 	startButton->runAction(moveTo);
 }
 
-virtual bool HelloWorld::onTouchBegin(cocos2d::Touch* touch, cocos2d::Event* event)
+bool HelloWorld::onTouchBegin(cocos2d::Touch* touch, cocos2d::Event* event)
 {
-	touchPos = touch->GetPosition();
+	touchPos = touch->getLocation();
+	return true;
 }
 
-virtual void HelloWorld::onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event)
+void HelloWorld::onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event)
 {
-	touchPos = touch->GetPosition();
+	touchPos = touch->getLocation();
 }
 
-bool HelloWorld::Collision(Sprite* ball, Platform* platform)
+bool HelloWorld::Collision(Sprite* ball, Sprite* platform)
 {
-	if (platform->getBoundingBox().intersectCircle(ball->getPosition(), ball->getBoundingBox().size.width / 2))
+	if (platform->getBoundingBox().intersectsCircle(ball->getPosition(), ball->getBoundingBox().size.width / 2))
 	{
 		return true;
 	}

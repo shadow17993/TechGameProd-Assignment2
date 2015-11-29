@@ -61,6 +61,17 @@
             <FileData Type="Normal" Path="Platform.jpg" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
+          <AbstractNodeData Name="ball" ActionTag="-1851434158" Tag="8" IconVisible="False" LeftMargin="298.9991" RightMargin="291.0009" TopMargin="468.9993" BottomMargin="441.0007" ctype="SpriteObjectData">
+            <Size X="50.0000" Y="50.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="323.9991" Y="466.0007" />
+            <Scale ScaleX="0.6800" ScaleY="0.6800" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5062" Y="0.4854" />
+            <PreSize X="0.0781" Y="0.0521" />
+            <FileData Type="Normal" Path="Ball.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
           <AbstractNodeData Name="startButton" ActionTag="2130505444" Tag="9" IconVisible="False" LeftMargin="298.5962" RightMargin="295.4038" TopMargin="477.5538" BottomMargin="446.4462" TouchEnable="True" FontSize="14" ButtonText="Start" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="46.0000" Y="36.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

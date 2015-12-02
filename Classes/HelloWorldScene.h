@@ -2,7 +2,7 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
-#include <ui/UIButton.h>
+#include "ui\CocosGUI.h"
 
 using namespace cocos2d;
 
@@ -19,27 +19,39 @@ public:
     CREATE_FUNC(HelloWorld);
 
 	void update(float delta);
-	void startButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
-	void startGame();
-	void endGame();
 
 	virtual bool onTouchBegin(cocos2d::Touch*, cocos2d::Event*);
+	virtual void onTouchEnded(cocos2d::Touch*, cocos2d::Event*);
 	virtual void onTouchMoved(cocos2d::Touch*, cocos2d::Event*);
+	virtual void onTouchCancelled(cocos2d::Touch*, cocos2d::Event*);
 
-	bool Collision(Sprite* ball, Sprite* platform);
+	void startButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
+
+	void StartGame();
+	void EndGame();
+
+	bool platformCollision(Sprite* ball, Sprite* platform);
+
+	int timer = 0;
+	int timercount = 0;
 
 private:
 	Sprite* ball;
-	/*Sprite platform1;
-	Sprite platform2;
-	Sprite platform3;*/
-	Label* scoreLabel;
-	Sprite* background;
-	ui::Button* startButton;
-	Vec2 touchPos;
+	Sprite* platform1;
+	Sprite* platform2;
+	Sprite* platform3;
+	TextField* timerText;
+	Label* timerLabel;
+	Button* startButton;
+	Sprite* background1;
+	Sprite* background2;
+	Platform* platforms;
+	//int timer;
+	float platformSpeed;
+	int speedcount;
+	Vec2 touchLocation;
 
 	bool isGameLive;
-
 };
 
 #endif // __HELLOWORLD_SCENE_H__
